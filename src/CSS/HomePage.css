@@ -1,0 +1,250 @@
+.form-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+}
+.box{
+    overflow: hidden;
+    position: relative;
+    width: 50rem;
+    height:45rem;
+    background: #1c1c1c;
+    border-radius: 8px;
+
+}
+
+.box::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 50rem;
+    height: 45rem;
+    background: linear-gradient(0deg,transparent,transparent,#45f3ff,#45f3ff,#45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear alternate-reverse;
+}
+
+.box::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50rem;
+    height: 45rem;
+    background: linear-gradient(0deg,transparent,transparent,#45f3ff,#45f3ff,#45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear alternate-reverse;
+    animation-delay: -3s;
+}
+
+
+@keyframes animate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+    
+}
+
+
+
+.box form{
+    position: absolute;
+    inset: 4px;
+    background: #222;
+    padding: 50px 40px;
+    border-radius: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.box h2{
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+.box form .InputBox{
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+}
+
+.box form .InputBox input{
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05 em;
+    transition: 0.5s;
+    z-index: 10;
+
+}
+.box form .InputBox select{
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    font-size: 1em;
+    letter-spacing: 0.05 em;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+
+.box form .InputBox span{
+    position: absolute;
+    left: 0;
+    padding: 20px 0px 10px;
+    pointer-events: none;
+    color: #8f8f8f;
+    font-size: 1em;
+    letter-spacing: 0.05 em;
+    transition: 0.5s;
+
+}
+
+.box form .InputBox input:valid ~ span,
+.box form .InputBox input:focus ~ span
+{
+    color: #fff;
+    font-size: 0.75em;
+    transform: translateY(-34px);
+
+}
+
+
+
+
+
+.box form .InputBox i{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    pointer-events: none;
+
+}
+
+.box form .InputBox input:valid ~ i,
+.box form .InputBox input:focus ~ i
+{
+    height: 44px;
+}
+
+.box form .links
+{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.box form .links a
+{
+    margin: 10px 0;
+    font-size: 0.75em;
+    color: #8f8f8f;
+    text-decoration: none;
+
+}
+
+.box form .links a:hover,
+.box form .links a:nth-child(2)
+{
+    color: #fff;
+}
+
+.box form input[type="submit"]
+{
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    background: #fff;
+    color: #222;
+    font-size: 0.9em;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 10px;
+
+}
+
+.box form input [type="submit"]
+{
+    
+    opacity: 0.8;
+    
+}
+
+
+
+.word-button {
+    background-color: rgb(101, 101, 117);
+    color: #23242a;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.word-button:hover {
+    background-color: rgb(13, 196, 232);
+}
+
+.word-button.selected {
+    background-color: rgb(93, 214, 255);
+    border: 2px solid rgba(64, 64, 67, 0);
+}
+
+.features-container {
+    padding: 20px;
+    background: transparent;
+}
+
+.features-container div {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.features-input {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #222; /* Dark background for the input */
+    color: white; /* White text color */
+    border: 1px solid blue; /* Blue border */
+    border-radius: 5px; /* Rounded corners */
+    resize: none; /* Prevent resizing */
+}
+
+.features-input:focus {
+    outline: none; /* Remove default outline */
+    border-color: lightblue; /* Change border color on focus */
+    background-color: #333; /* Slightly lighter background on focus */
+}
+
+  
