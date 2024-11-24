@@ -264,7 +264,7 @@ useEffect(() => {
             readOnly
             rows="4"
             cols="50"
-            style={{ width: '100%', marginTop: '10px' }}
+            style={{ width: '100%', marginTop: '10px', color:'black', padding:"3px",  }}
             onClick={toggleWordSelection} 
           />
         </div>
@@ -297,7 +297,7 @@ useEffect(() => {
           </div> */}
           <div class="InputBox">
             <label>Choose today's day:</label>
-            <select onChange={(e)=>setDay(e.target.value)} >
+            <select onChange={(e)=>setDay(e.target.value)} style={{color:'Gray'}} >
                 <option value="">Anyday</option>
                 <option value="monday">Monday</option>
                 <option value="tuesday">Tuesday</option>
@@ -311,7 +311,7 @@ useEffect(() => {
           </div>
           <div class="InputBox">
           <label >Choose a City:</label>
-          <select onChange={(e)=>setcity(e.target.value)} >
+          <select onChange={(e)=>setcity(e.target.value)} style={{color:'Gray'}} >
               <option value="">Click here to Select</option>
               <option value="Philadelphia">Philadelphia</option>
               <option value="Green Lane">Green Lane</option>
@@ -368,6 +368,7 @@ useEffect(() => {
             setShowCuisines(false); // Close the dropdown
           }}
           className={`word-button ${cuisine === cuisineOption.trim() ? 'selected' : ''}`}
+          
         >
           {cuisineOption.trim()}
         </button>
