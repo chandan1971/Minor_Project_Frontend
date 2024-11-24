@@ -87,7 +87,7 @@
     outline: none;
     border: none;
     box-shadow: none;
-    color: #23242a;
+    color: #fff;
     font-size: 1em;
     letter-spacing: 0.05 em;
     transition: 0.5s;
@@ -211,13 +211,10 @@
     transition: background-color 0.3s;
 }
 
-.word-button:hover {
-    background-color: rgb(13, 196, 232);
-}
-
+.word-button:hover,
 .word-button.selected {
-    background-color: rgb(93, 214, 255);
-    border: 2px solid rgba(64, 64, 67, 0);
+  background-color: #374151; /* Hover effect */
+  color: #f3f4f6;
 }
 
 .features-container {
@@ -247,4 +244,47 @@
     background-color: #333; /* Slightly lighter background on focus */
 }
 
+
+.cuisine-container {
+    position: relative;
+    padding: 20px;
+    background: transparent;
+  }
   
+  .cuisine-selection {
+    position: absolute;
+    background-color: #1f2937; /* Matching background */
+    border: 1px solid #4b5563;
+    border-radius: 8px;
+    max-height: 200px; /* Limit height */
+    overflow-y: auto; /* Scroll if many options */
+    z-index: 10;
+    width: 100%; /* Match input width */
+  }
+  
+  .cuisine-button {
+    display: block;
+    padding: 10px;
+    margin: 4px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cuisine-button:hover,
+  .cuisine-button.selected {
+    background-color: #d1e7ff;
+    color: #004085;
+  }
+  
+
+  .InputBox input {
+    color: #ffffff; /* Light font color */
+    background-color: #1f2937; /* Darker background for contrast */
+    padding: 10px;
+    border: 1px solid #4b5563;
+    border-radius: 8px;
+  }
