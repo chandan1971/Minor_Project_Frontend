@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../Assets/Untitled design.png'
+import logo from '../Assets/logo-nit.jpg'
 
 import {FaLinkedin} from "react-icons/fa"
 import {FaGithub} from "react-icons/fa"
@@ -22,16 +22,16 @@ const Navbar = () => {
             <div className='hover:cursor-pointer hover:text-cyan-300'>Contact</div>
         </div> */}
         <div className='m-8 flex items-center justify_center gap-4 text-2xl '>
-            <Link to={'https://www.instagram.com/nicmeity/'} target='_blank'>
+            <Link to={'#'}>
               <FaLinkedin  className='text-white hover:cursor-pointer hover:text-cyan-300'></FaLinkedin>
             </Link>
-            <Link to={'https://www.youtube.com/nationalinformaticscentre'} target='_blank'>
+            <Link to={'#'}>
              <FaYoutube className='text-white hover:cursor-pointer hover:text-cyan-300'></FaYoutube>
             </Link>
-            <Link to={'https://x.com/NICMeity?mx=2'} target='_blank'>
+            <Link to={'#'}>
               <FaTwitterSquare  className='text-white hover:cursor-pointer hover:text-cyan-300'></FaTwitterSquare>
             </Link>
-            <Link to={'https://www.instagram.com/nicmeity/'} target='_blank' >
+            <Link to={'#'} >
               <FaInstagram  className='text-white hover:cursor-pointer hover:text-cyan-300'></FaInstagram>
             </Link>
         </div>

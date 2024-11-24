@@ -1,5 +1,5 @@
 import { Button, Spinner} from 'flowbite-react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import Navbar from '../Components/Navbar';
 import '../CSS/HomePage.css'
@@ -29,10 +29,84 @@ function HomePage() {
   'BestNights', 'BYOB', 'Corkage', 'BYOBCorkage',
   'AcceptsInsurance', 'RestaurantsCounterService', 'Open24Hours',
   'AgesAllowed', 'DietaryRestrictions'];
+
+  const cuisines = [ 'Restaurants', ' Food', ' Bubble Tea', ' Coffee & Tea',
+           ' Bakeries', 'Brewpubs', ' Breweries', 'Burgers', ' Fast Food',
+           ' Sandwiches', ' Ice Cream & Frozen Yogurt', ' Restaurants',
+          'Ice Cream & Frozen Yogurt', ' Burgers', 'Vietnamese',
+          ' Food Trucks', 'American (Traditional)', ' Diners',
+          ' Breakfast & Brunch', 'Sushi Bars', ' Japanese', 'Korean',
+          'Steakhouses', ' Asian Fusion', ' Italian', 'Pizza',
+          ' Chicken Wings', 'Eatertainment', ' Arts & Entertainment',
+          ' Brewpubs', ' American (Traditional)', ' Specialty Food',
+          ' Steakhouses', ' Pizza', ' Pasta Shops', 'Arts & Entertainment',
+          ' Music Venues', ' Internet Service Providers', ' Nightlife',
+          ' Jazz & Blues', ' Professional Services', ' Internet Cafes',
+          'Specialty Food', ' Health Markets', 'Food', ' Grocery',
+          ' Convenience Stores', 'Vitamins & Supplements',
+          ' Juice Bars & Smoothies', ' Shopping', 'Sports Bars',
+          ' American (New)', ' Bars', 'Chocolatiers & Shops',
+          ' Candy Stores', 'Food Trucks', ' Sports Bars', ' Salad',
+          ' Beer Bar', ' Lounges', ' Wraps', ' Beer', ' Wine & Spirits',
+          ' Automotive', ' Delis', ' Gas Stations', 'Nightlife', ' Pubs',
+          ' Event Planning & Services', ' Wine Bars', ' Gastropubs',
+          ' Venues & Event Spaces', 'Juice Bars & Smoothies',
+          ' Fruits & Veggies', 'Sporting Goods', ' Sports Wear', ' Fashion',
+          'Seafood', ' Seafood', ' Cajun/Creole', 'Mexican', ' French',
+          ' Moroccan', ' Mediterranean', 'Bars', ' Beer Gardens', ' Tours',
+          ' Wine Tours', ' Beer Tours', ' Hotels & Travel', 'Grocery',
+          ' Drugstores', ' Department Stores', ' Discount Store',
+          ' Electronics', 'Couriers & Delivery Services', ' Local Services',
+          ' Food Delivery Services', 'Sandwiches', ' Chinese',
+          'Custom Cakes', ' Desserts', ' Cupcakes', 'Discount Store',
+          ' Mobile Phones', ' Organic Stores', 'Desserts',
+          ' Do-It-Yourself Food', ' Patisserie/Cake Shop', 'Live/Raw Food',
+          ' Mexican', ' Barbeque', 'Italian', 'Pharmacy',
+          ' Health & Medical', 'Venues & Event Spaces', ' Performing Arts',
+          ' Beauty & Spas', ' Museums', ' Hotels', ' Cinema', ' Resorts',
+          ' Day Spas', ' Shaved Ice', 'Coffee & Tea', 'Fast Food',
+          ' Chicken Shop', 'Shopping', ' Furniture Stores', ' Home & Garden',
+          'Japanese', ' Thai', ' Caterers', ' Bagels', ' Southern', 'Donuts',
+          'Drugstores', ' Sushi Bars', ' Irish', ' Tobacco Shops',
+          ' Hookah Bars', ' Vegan', ' Cocktail Bars', ' Tapas/Small Plates',
+          'Cupcakes', ' Street Vendors', 'Irish Pub', ' Coffee Roasteries',
+           ' Pharmacy', ' Caribbean', ' Trinidadian', ' Cafes', 'Caribbean',
+          ' Comfort Food', ' Donuts', ' Acai Bowls', ' Vegetarian',
+          ' Pakistani', ' Indian', ' Soup', ' Halal', 'Street Vendors',
+          ' Greek', ' Food Stands'];
   const [recommendations_on_user_Inputs,set_recommendations_on_user_Inputs]=useState('')
   const [selectedWords, setSelectedWords] = useState([]);
   const [response, setResponse] = useState('');
   const [showWords, setShowWords] = useState(false);
+
+  const cuisineDropdownRef = useRef(null);
+  const wordDropdownRef = useRef(null);
+
+  // Close dropdown on outside click
+useEffect(() => {
+  const handleOutsideClick = (e) => {
+    if (cuisineDropdownRef.current && !cuisineDropdownRef.current.contains(e.target)) {
+      setShowCuisines(false); // Close the dropdown
+    }
+  };
+  document.addEventListener('mousedown', handleOutsideClick);
+
+  return () => {
+    document.removeEventListener('mousedown', handleOutsideClick);
+  };
+}, []);
+
+
+  const handleSelectCuisine = (selected) => {
+    set_cuisine(selected); // Set the selected cuisine
+    setShowCuisines(false); 
+  };
+  
+  // Toggle showing the cuisine list (similar to features)
+  const [showCuisines, setShowCuisines] = useState(false);
+  const toggleCuisineSelection = () => {
+    setShowCuisines(!showCuisines);
+  };
 
   const handleSelectWord = (word) => {
     if (selectedWords.includes(word)) {
@@ -182,7 +256,7 @@ function HomePage() {
 
        
       <form onSubmit={handleUserInput}>
-          <h2>BMS Recommendation System</h2>
+          <h2>Restaurant Recommendation System</h2>
           <div className="features-container">
           <div>Features :</div>
           <input 
@@ -274,15 +348,34 @@ function HomePage() {
           </select> 
           <i></i>
           </div>
-          <div class="InputBox">
-            <label >Select Cuisine :</label>
-            <select  onChange={(e)=> set_cuisine(e.target.value)}>
-                <option value="">Click here to Select</option>
-                <option value="Y">Yes</option>
-                <option value="N">No</option>
-            </select> 
-            <i></i>
-          </div>
+          <div className="InputBox" ref={cuisineDropdownRef}>
+  <label>Select Cuisine:</label>
+  <input
+    value={cuisine}
+    readOnly
+    placeholder="Click here to Select Cuisine"
+    onClick={toggleCuisineSelection}
+    className="cursor-pointer"
+  />
+  {showCuisines && (
+    <div className="cuisine-selection">
+      {cuisines.map((cuisineOption) => (
+        <button
+          type="button"
+          key={cuisineOption}
+          onClick={() => {
+            handleSelectCuisine(cuisineOption.trim()); // Remove any leading/trailing spaces
+            setShowCuisines(false); // Close the dropdown
+          }}
+          className={`word-button ${cuisine === cuisineOption.trim() ? 'selected' : ''}`}
+        >
+          {cuisineOption.trim()}
+        </button>
+      ))}
+    </div>
+  )}
+</div>
+
           <Button gradientDuoTone="purpleToBlue" type='submit' disabled={loading} className='mt-5'>
               {
                 loading?(
